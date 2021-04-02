@@ -6,7 +6,7 @@ using namespace nts;
 
 template<typename T, int beam_size>
 __global__
-void select_beam_rough_topk(T *prob, T *seq_probs, T *seq_score, T *scoreTopK, T *index) {
+void select_beam_rough_topk(T *prob, T *seq_probs, T *seq_score, T *scoreTopK, T *index, int cur_step, int vocab_size) {
     if (cur_step != 0 && alive_seq[blockIdx.x * max_step + cur_step] == end_id) {
         // this is a finished beam
         if (threadIdx.x == 0) {
@@ -129,11 +129,13 @@ void select_beam_rough_topk(T *prob, T *seq_probs, T *seq_score, T *scoreTopK, T
 template<typename T>
 void select_beam_rough_topk_launcher(
         const XTensor prob, const XTensor seq_probs, const XTensor seq_score, XTensor scoreTopK, XTensor index,
-        int beam_size) {
-    step_token_num = prob.dimSize[prob.order - 1];
-    max_thread_per_block = 512;
+        int beam_size, int cur_step) {
+    int step_token_num = beam_size*prob.dimSize[1];
+    int max_thread_per_block = 512;
+    int vocab_size = prob.dimSize[prob.order - 1] / beam_size;
+    printf("step_token_num:%d,max_thread_per_block:%d,vocab_size:%d",step_token_num,max_thread_per_block,vocab_size);
     select_beam_rough_topk<T, beam_size>
     <<<step_token_num, max_thread_per_block>>>((DTYPE *) prob.data, (DTYPE *) seq_probs.data,
                                                (DTYPE *) seq_score.data,
-                                               (DTYPE *) scoreTopK.data, (int *) index.data,);
+                                               (DTYPE *) scoreTopK.data, (int *) index.data, cur_step, vocab_size);
 }
