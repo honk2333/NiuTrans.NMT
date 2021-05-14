@@ -1,0 +1,197 @@
+node 388 - income[3, M_OPERATION]: 383 17 18 , outgo[0]: null
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 18 - income[0]: null , outgo[1]: 388
+order=1 dimsize=512 dtype=X_FLOAT dense=1.000000
+
+node 17 - income[0]: null , outgo[1]: 388
+order=2 dimsize=1024,512 dtype=X_FLOAT dense=1.000000
+
+node 383 - income[2, M_MULTIPLY_I]: 376 375 , outgo[1]: 388
+order=3 dimsize=136,22,1024 dtype=X_FLOAT dense=1.000000
+
+node 375 - income[0]: null , outgo[1]: 383
+order=3 dimsize=136,22,1024 dtype=X_FLOAT dense=1.000000
+
+node 376 - income[1, F_RECTIFY]: 371 , outgo[1]: 383
+order=3 dimsize=136,22,1024 dtype=X_FLOAT dense=1.000000
+
+node 371 - income[3, M_OPERATION]: 394 15 16 , outgo[1]: 376
+order=3 dimsize=136,22,1024 dtype=X_FLOAT dense=1.000000
+
+node 16 - income[0]: null , outgo[1]: 371
+order=1 dimsize=1024 dtype=X_FLOAT dense=1.000000
+
+node 15 - income[0]: null , outgo[1]: 371
+order=2 dimsize=512,1024 dtype=X_FLOAT dense=1.000000
+
+node 394 - income[2, M_SUMDIM]: 357 22 , outgo[1]: 371
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 22 - income[0]: null , outgo[1]: 394
+order=1 dimsize=512 dtype=X_FLOAT dense=1.000000
+
+node 357 - income[2, M_MULTIPLYDIM]: 354 21 , outgo[1]: 394
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 21 - income[0]: null , outgo[1]: 357
+order=1 dimsize=512 dtype=X_FLOAT dense=1.000000
+
+node 354 - income[2, M_DIV]: 352 359 , outgo[1]: 357
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 359 - income[1, S_UNSQUEEZE]: 361 , outgo[1]: 354
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 361 - income[1, M_POWER]: 362 , outgo[1]: 359
+order=2 dimsize=136,22 dtype=X_FLOAT dense=1.000000
+
+node 362 - income[2, R_REDUCEVARIANCE]: 395 363 , outgo[1]: 361
+order=2 dimsize=136,22 dtype=X_FLOAT dense=1.000000
+
+node 352 - income[2, M_SUB]: 395 360 , outgo[1]: 354
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 360 - income[1, S_UNSQUEEZE]: 363 , outgo[1]: 352
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 363 - income[1, R_REDUCEMEAN]: 395 , outgo[2]: 362 360
+order=2 dimsize=136,22 dtype=X_FLOAT dense=1.000000
+
+node 395 - income[2, M_SUM]: 398 392 , outgo[3]: 363 362 352
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 398 - income[2, M_MULTIPLY_I]: 335 334 , outgo[1]: 395
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 334 - income[0]: null , outgo[1]: 398
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 335 - income[3, M_OPERATION]: 321 13 14 , outgo[1]: 398
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 14 - income[0]: null , outgo[1]: 335
+order=1 dimsize=512 dtype=X_FLOAT dense=1.000000
+
+node 13 - income[0]: null , outgo[1]: 335
+order=2 dimsize=512,512 dtype=X_FLOAT dense=1.000000
+
+node 321 - income[1, S_MERGE]: 324 , outgo[1]: 335
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 324 - income[2, M_MATRIXMULBATCHED]: 322 325 , outgo[1]: 321
+order=4 dimsize=4,136,22,128 dtype=X_FLOAT dense=1.000000
+
+node 325 - income[1, S_SPLIT]: 328 , outgo[1]: 324
+order=4 dimsize=4,136,22,128 dtype=X_FLOAT dense=1.000000
+
+node 328 - income[3, M_OPERATION]: 396 10 11 , outgo[1]: 325
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 11 - income[0]: null , outgo[1]: 328
+order=1 dimsize=512 dtype=X_FLOAT dense=1.000000
+
+node 10 - income[0]: null , outgo[1]: 328
+order=2 dimsize=512,512 dtype=X_FLOAT dense=1.000000
+
+node 322 - income[2, M_MULTIPLY]: 312 311 , outgo[1]: 324
+order=4 dimsize=4,136,22,22 dtype=X_FLOAT dense=1.000000
+
+node 311 - income[0]: null , outgo[1]: 322
+order=4 dimsize=4,136,22,22 dtype=X_FLOAT dense=1.000000
+
+node 312 - income[1, F_SOFTMAX]: 323 , outgo[1]: 322
+order=4 dimsize=4,136,22,22 dtype=X_FLOAT dense=1.000000
+
+node 323 - income[1, M_SCALE]: 303 , outgo[1]: 312
+order=4 dimsize=4,136,22,22 dtype=X_FLOAT dense=1.000000
+
+node 303 - income[2, M_SUM]: 300 737 , outgo[1]: 323
+order=4 dimsize=4,136,22,22 dtype=X_FLOAT dense=1.000000
+
+node 737 - income[1, S_UNSQUEEZE]: 218 , outgo[1]: 303
+order=4 dimsize=4,136,22,22 dtype=X_FLOAT dense=1.000000
+
+node 218 - income[1, S_UNSQUEEZE]: 209 , outgo[1]: 737
+order=3 dimsize=136,22,22 dtype=X_FLOAT dense=1.000000
+
+node 209 - income[0]: null , outgo[1]: 218
+order=2 dimsize=136,22 dtype=X_FLOAT dense=1.000000
+
+node 300 - income[2, M_MATRIXMULBATCHED]: 326 327 , outgo[1]: 303
+order=4 dimsize=4,136,22,22 dtype=X_FLOAT dense=1.000000
+
+node 327 - income[1, S_SPLIT]: 329 , outgo[1]: 300
+order=4 dimsize=4,136,22,128 dtype=X_FLOAT dense=1.000000
+
+node 329 - income[3, M_OPERATION]: 396 8 9 , outgo[1]: 327
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 9 - income[0]: null , outgo[1]: 329
+order=1 dimsize=512 dtype=X_FLOAT dense=1.000000
+
+node 8 - income[0]: null , outgo[1]: 329
+order=2 dimsize=512,512 dtype=X_FLOAT dense=1.000000
+
+node 326 - income[1, S_SPLIT]: 330 , outgo[1]: 300
+order=4 dimsize=4,136,22,128 dtype=X_FLOAT dense=1.000000
+
+node 330 - income[3, M_OPERATION]: 396 6 7 , outgo[1]: 326
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 7 - income[0]: null , outgo[1]: 330
+order=1 dimsize=512 dtype=X_FLOAT dense=1.000000
+
+node 6 - income[0]: null , outgo[1]: 330
+order=2 dimsize=512,512 dtype=X_FLOAT dense=1.000000
+
+node 396 - income[2, M_SUMDIM]: 264 20 , outgo[3]: 330 329 328
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 20 - income[0]: null , outgo[1]: 396
+order=1 dimsize=512 dtype=X_FLOAT dense=1.000000
+
+node 264 - income[2, M_MULTIPLYDIM]: 261 19 , outgo[1]: 396
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 19 - income[0]: null , outgo[1]: 264
+order=1 dimsize=512 dtype=X_FLOAT dense=1.000000
+
+node 261 - income[2, M_DIV]: 259 266 , outgo[1]: 264
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 266 - income[1, S_UNSQUEEZE]: 268 , outgo[1]: 261
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 268 - income[1, M_POWER]: 269 , outgo[1]: 266
+order=2 dimsize=136,22 dtype=X_FLOAT dense=1.000000
+
+node 269 - income[2, R_REDUCEVARIANCE]: 392 270 , outgo[1]: 268
+order=2 dimsize=136,22 dtype=X_FLOAT dense=1.000000
+
+node 259 - income[2, M_SUB]: 392 267 , outgo[1]: 261
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 267 - income[1, S_UNSQUEEZE]: 270 , outgo[1]: 259
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 270 - income[1, R_REDUCEMEAN]: 392 , outgo[2]: 269 267
+order=2 dimsize=136,22 dtype=X_FLOAT dense=1.000000
+
+node 392 - income[2, M_MULTIPLY_I]: 238 237 , outgo[4]: 270 269 259 395
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 237 - income[0]: null , outgo[1]: 392
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 238 - income[1, M_SCALE]: 231 , outgo[1]: 392
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 231 - income[2, M_GATHER]: 1 206 , outgo[1]: 238
+order=3 dimsize=136,22,512 dtype=X_FLOAT dense=1.000000
+
+node 206 - income[0]: null , outgo[1]: 231
+order=2 dimsize=136,22 dtype=X_INT dense=1.000000
+
+node 1 - income[0]: null , outgo[1]: 231
+order=2 dimsize=10152,512 dtype=X_FLOAT dense=1.000000
